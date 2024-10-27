@@ -18,7 +18,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@github.com/bryanmylee/svelte-render.git"
+		"url": "git+ssh://git@github.com/humanspeak/svelte-render.git"
 	},
 	"keywords": [
 		"svelte",
@@ -29,9 +29,9 @@
 	"author": "Bryan Lee",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/bryanmylee/svelte-render/issues"
+		"url": "https://github.com/humanspeak/svelte-render/issues"
 	},
-	"homepage": "https://github.com/bryanmylee/svelte-render#readme",
+	"homepage": "https://github.com/humanspeak/svelte-render#readme",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
