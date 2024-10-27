@@ -11,12 +11,10 @@ Manage complex Svelte behaviors outside of templates with full type safety.
 
 ```svelte
 <script>
-  import {Render, createRender} from 'svelte-render';
-  import Avatar from './Avatar.svelte';
-  // ...
-  const avatar = createRender(Avatar, {name: 'Ada Lovelace'})
-    .on('click', handleClick)
-    .on('launch', handleLaunch);
+    import { Render, createRender } from 'svelte-render'
+    import Avatar from './Avatar.svelte'
+    // ...
+    const avatar = createRender(Avatar, { name: 'Ada Lovelace' }).on('click', handleClick).on('launch', handleLaunch)
 </script>
 
 <Render of={avatar} />
@@ -38,13 +36,13 @@ Svelte Render was primarily built to support complex rendering definitions for [
 
 `of` accepts:
 
-- primitive data such as `number` and `string`
-- `Writable<number>` and `Writable<string>` for dynamic primitive data
-- `ComponentRenderConfig` returned by `createRender`
+-   primitive data such as `number` and `string`
+-   `Writable<number>` and `Writable<string>` for dynamic primitive data
+-   `ComponentRenderConfig` returned by `createRender`
 
 ```svelte
 <script>
-  const avatar = createRender(Avatar, {name: 'Ada Lovelace'});
+    const avatar = createRender(Avatar, { name: 'Ada Lovelace' })
 </script>
 
 <Render of={avatar} />
@@ -63,16 +61,16 @@ becomes
 `props` can be omitted if the component does not receive props but must be included otherwise.
 
 ```ts
-const icon = createRender(TickIcon); // ✅
-const avatar = createRender(Avatar); // ❌ Type error.
-const avatar = createRender(Avatar, {name: 'Ada Lovelace'}); // ✅
+const icon = createRender(TickIcon) // ✅
+const avatar = createRender(Avatar) // ❌ Type error.
+const avatar = createRender(Avatar, { name: 'Ada Lovelace' }) // ✅
 ```
 
 If you need prop reactivity, `props` must be a [Svelte store](https://svelte.dev/tutorial/writable-stores).
 
 ```ts
-const avatarProps = writable({name: 'Ada Lovelace'});
-const avatar = createRender(Avatar, avatarProps);
+const avatarProps = writable({ name: 'Ada Lovelace' })
+const avatar = createRender(Avatar, avatarProps)
 ```
 
 ### `.on(event, handler)`
@@ -81,8 +79,8 @@ Svelte Render supports the Svelte event system by chaining `.on` calls on `creat
 
 ```ts
 const button = createRender(Button)
-  .on('click', handleClick)
-  .on('click', (ev) => console.log(ev));
+    .on('click', handleClick)
+    .on('click', (ev) => console.log(ev))
 ```
 
 `<Render of={button} />` becomes:
@@ -96,9 +94,8 @@ However, note that the callback handler passed into `.on(event, handler)` is not
 If you need a handler to access dynamic data, use a dynamic system like Svelte Stores.
 
 ```ts
-const counter = writable(0);
-const button = createRender(Button)
-  .on('click', (ev) => counter.update(c => c + 1));
+const counter = writable(0)
+const button = createRender(Button).on('click', (ev) => counter.update((c) => c + 1))
 ```
 
 ### `.slot(...config)`
@@ -110,14 +107,14 @@ Svelte Render also supports Svelte's default slot system.
 _Due to technical limitations with Svelte 4, it is not possible to assign render configurations to named slots._
 
 ```ts
-const button = createRender(Button).slot(createRender(Icon, {name: 'user'}), 'Log in');
+const button = createRender(Button).slot(createRender(Icon, { name: 'user' }), 'Log in')
 ```
 
 `<Render of={button} />` becomes:
 
 ```svelte
 <Button>
-  <Icon name="user" />
-  Log in
+    <Icon name="user" />
+    Log in
 </Button>
 ```
