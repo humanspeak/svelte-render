@@ -1,15 +1,15 @@
 <script lang="ts">
-    import type { ComponentEvents } from 'svelte'
-    import { createRender, Render } from '$lib/index.js'
-    import Rocket from '../tests/rocket.svelte'
-    import MultipleRockets from '../tests/multiple-rockets.svelte'
-    import InteractiveRocket from '../tests/interactive-rocket.svelte'
+	import type {ComponentEvents} from 'svelte';
+	import {createRender, Render} from '$lib/index.js';
+	import Rocket from '../tests/rocket.svelte';
+	import MultipleRockets from '../tests/multiple-rockets.svelte';
+	import InteractiveRocket from '../tests/interactive-rocket.svelte';
 
-    const rocket = createRender(Rocket)
-    const multipleRockets = createRender(MultipleRockets, { times: 3 })
-    const interactiveRocket = createRender(InteractiveRocket)
-        .on('click', (ev) => console.log(ev))
-        .on('launch', (ev) => console.log(ev))
+	const rocket = createRender(Rocket);
+	const multipleRockets = createRender(MultipleRockets, {times: 3});
+	const interactiveRocket = createRender(InteractiveRocket)
+		.on('click', (ev) => console.log(ev))
+		.on('launch', (ev) => console.log(ev));
 </script>
 
 <h1>Welcome to your library project</h1>
@@ -17,13 +17,13 @@
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 
 <div>
-    <Render of={rocket} />
+	<Render of={rocket} />
 </div>
 
 <div>
-    <Render of={multipleRockets} />
+	<Render of={multipleRockets} />
 </div>
 
 <div>
-    <Render of={interactiveRocket} />
+	<Render of={interactiveRocket} />
 </div>
