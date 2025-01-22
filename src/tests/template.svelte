@@ -1,11 +1,11 @@
 <script lang="ts">
-	import {Render, type RenderConfig} from '$lib/index.js';
+    import { Render, type RenderConfig } from '$lib/index.js'
 
-	type TComponent = $$Generic<SvelteComponent>;
+    type TComponent = $$Generic<SvelteComponent>
 
-	export let config: RenderConfig<TComponent>;
+    export let config: RenderConfig<TComponent>
 </script>
 
 <div data-testid="template">
-	<Render of={config} />
+    <Render of={config} />
 </div>
