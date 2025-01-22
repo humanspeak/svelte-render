@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/svelte/svelte5'
+import { act, render, screen } from '@testing-library/svelte'
 import { writable } from 'svelte/store'
 import Template from './template.svelte'
 

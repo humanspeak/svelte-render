@@ -1,37 +1,24 @@
 {
     "name": "@humanspeak/svelte-render",
+    "version": "3.9.9",
     "description": "Manage complex Svelte behaviors outside of templates with full type safety",
-    "version": "3.0.0",
-    "scripts": {
-        "dev": "vite dev",
-        "build": "vite build && npm run package",
-        "preview": "vite preview",
-        "package": "svelte-kit sync && svelte-package && publint",
-        "prepublishOnly": "npm run package",
-        "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-        "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-        "test": "vitest run --coverage",
-        "test:only": "vitest run",
-        "test:watch": "vitest",
-        "lint": "prettier --check . && eslint .",
-        "format": "prettier --write ."
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+ssh://git@github.com/humanspeak/svelte-render.git"
-    },
     "keywords": [
         "svelte",
         "sveltejs",
         "render",
         "template"
     ],
-    "author": "Humanspeak, Inc.",
-    "license": "MIT",
+    "homepage": "https://github.com/humanspeak/svelte-render#readme",
     "bugs": {
         "url": "https://github.com/humanspeak/svelte-render/issues"
     },
-    "homepage": "https://github.com/humanspeak/svelte-render#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/humanspeak/svelte-render.git"
+    },
+    "license": "MIT",
+    "author": "Humanspeak, Inc.",
+    "type": "module",
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
@@ -39,43 +26,56 @@
             "default": "./dist/index.js"
         }
     },
+    "svelte": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "files": [
         "dist",
         "!dist/**/*.test.*",
         "!dist/**/*.spec.*"
     ],
-    "peerDependencies": {
-        "svelte": "^5.0.0"
+    "scripts": {
+        "build": "vite build && npm run package",
+        "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+        "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+        "dev": "vite dev",
+        "format": "prettier --write .",
+        "lint": "prettier --check . && eslint .",
+        "lint:fix": "npm run format && eslint . --fix",
+        "package": "svelte-kit sync && svelte-package && publint",
+        "prepublishOnly": "npm run package",
+        "preview": "vite preview",
+        "test": "vitest run --coverage",
+        "test:only": "vitest run",
+        "test:watch": "vitest"
+    },
+    "dependencies": {
+        "@humanspeak/svelte-subscribe": "^4.0.0"
     },
     "devDependencies": {
         "@sveltejs/adapter-auto": "^3.0.0",
         "@sveltejs/kit": "^2.0.0",
         "@sveltejs/package": "^2.0.0",
-        "@sveltejs/vite-plugin-svelte": "^4",
+        "@sveltejs/vite-plugin-svelte": "^3.0.0",
         "@testing-library/jest-dom": "^6.1.6",
         "@testing-library/svelte": "^4.0.5",
         "@testing-library/user-event": "^14.5.2",
+        "@types/eslint": "8.56.0",
         "@typescript-eslint/eslint-plugin": "^6.0.0",
         "@typescript-eslint/parser": "^6.0.0",
-        "@vitest/coverage-v8": "^2.1.3",
-        "eslint": "^8.28.0",
+        "@vitest/coverage-v8": "^1.1.1",
+        "eslint": "^8.56.0",
         "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-svelte": "^2.30.0",
+        "eslint-plugin-svelte": "^2.35.1",
         "jsdom": "^23.0.1",
         "prettier": "^3.1.1",
         "prettier-plugin-svelte": "^3.1.2",
         "publint": "^0.1.9",
-        "svelte": "^5",
-        "svelte-check": "^4.0.5",
+        "svelte": "^4.2.7",
+        "svelte-check": "^3.6.0",
         "tslib": "^2.4.1",
+        "type-fest": "^4.9.0",
         "typescript": "^5.0.0",
         "vite": "^5.0.3",
-        "vitest": "^2.1.3"
-    },
-    "dependencies": {
-        "@humanspeak/svelte-subscribe": "^3.0.0"
-    },
-    "svelte": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "type": "module"
+        "vitest": "^1.0.0"
+    }
 }
