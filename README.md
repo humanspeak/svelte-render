@@ -11,7 +11,7 @@ Manage complex Svelte behaviors outside of templates with full type safety.
 
 ```svelte
 <script>
-    import { Render, createRender } from 'svelte-render'
+    import { Render, createRender } from '@humanspeak/svelte-subscribe'
     import Avatar from './Avatar.svelte'
     // ...
     const avatar = createRender(Avatar, { name: 'Ada Lovelace' })
