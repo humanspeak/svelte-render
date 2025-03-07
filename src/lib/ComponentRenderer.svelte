@@ -1,12 +1,12 @@
 <script lang="ts">
     import { Subscribe } from '@humanspeak/svelte-subscribe'
-    import { type Component } from 'svelte'
+    import { type Component, type ComponentProps } from 'svelte'
     import type { ComponentRenderConfig } from './createRender.js'
     import PropsRenderer from './PropsRenderer.svelte'
     import { isReadable } from './store.js'
 
-    type TComponent = $$Generic<Component>
-
+    // trunk-ignore(eslint/@typescript-eslint/no-explicit-any)
+    type TComponent = $$Generic<Component<any>>
     type Props = {
         config: ComponentRenderConfig<TComponent>
     }
@@ -18,8 +18,8 @@
 
 {#if isReadable(config.props)}
     <Subscribe props={config.props} let:props>
-        <PropsRenderer bind:instance {config} {props} />
+        <PropsRenderer bind:instance {config} props={props as ComponentProps<TComponent>} />
     </Subscribe>
 {:else}
-    <PropsRenderer bind:instance {config} props={config.props} />
+    <PropsRenderer bind:instance {config} props={config.props as ComponentProps<TComponent>} />
 {/if}

@@ -3,19 +3,20 @@
     import type { ComponentRenderConfig } from './createRender.js'
     import Render from './Render.svelte'
 
-    type TComponent = $$Generic<Component>
+    // trunk-ignore(eslint/@typescript-eslint/no-explicit-any)
+    type TComponent = $$Generic<Component<any>>
+    type Props = {
+        instance: TComponent | undefined
+        config: Omit<ComponentRenderConfig<TComponent>, 'props'>
+        props: ComponentProps<TComponent> | undefined
+    }
 
-    export let instance: TComponent | undefined = undefined
-    export let config: Omit<ComponentRenderConfig<TComponent>, 'props'>
-    export let props: ComponentProps<TComponent> | undefined = undefined
+    // trunk-ignore(eslint/prefer-const)
+    let { instance = $bindable(undefined), config, props }: Props = $props()
 </script>
 
-{#if config.children.length === 0}
-    <svelte:component this={config.component} bind:this={instance} {...props ?? {}} />
-{:else}
-    <svelte:component this={config.component} bind:this={instance} {...props ?? {}}>
-        {#each config.children as child}
-            <Render of={child} />
-        {/each}
-    </svelte:component>
-{/if}
+<config.component {...props} bind:this={instance}>
+    {#each config.children as child}
+        <Render of={child} />
+    {/each}
+</config.component>
