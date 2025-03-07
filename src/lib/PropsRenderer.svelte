@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { ComponentProps, Component } from 'svelte'
+    import type { Component, ComponentProps } from 'svelte'
     import type { ComponentRenderConfig } from './createRender.js'
     import Render from './Render.svelte'
 
