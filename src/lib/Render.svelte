@@ -4,7 +4,8 @@
     import type { RenderConfig } from './createRender.js'
     import { isReadable, Undefined } from './store.js'
 
-    type TComponent = $$Generic<Component>
+    // trunk-ignore(eslint/@typescript-eslint/no-explicit-any)
+    type TComponent = $$Generic<Component<any>>
 
     let config: RenderConfig<TComponent>
     export { config as of }
