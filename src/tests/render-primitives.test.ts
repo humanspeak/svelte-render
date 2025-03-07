@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom'
 import { act, render, screen } from '@testing-library/svelte'
 import { writable } from 'svelte/store'
 import Template from './template.svelte'

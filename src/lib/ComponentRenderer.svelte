@@ -1,11 +1,11 @@
 <script lang="ts">
-    import { onMount, type SvelteComponent } from 'svelte'
+    import { onMount, type Component } from 'svelte'
     import { Subscribe } from '@humanspeak/svelte-subscribe'
     import type { ComponentRenderConfig } from './createRender.js'
     import PropsRenderer from './PropsRenderer.svelte'
     import { isReadable } from './store.js'
 
-    type TComponent = $$Generic<SvelteComponent>
+    type TComponent = $$Generic<Component>
 
     export let config: ComponentRenderConfig<TComponent>
 

@@ -1,9 +1,9 @@
 <script lang="ts">
-    import type { ComponentProps, SvelteComponent } from 'svelte'
+    import type { ComponentProps, Component } from 'svelte'
     import type { ComponentRenderConfig } from './createRender.js'
     import Render from './Render.svelte'
 
-    type TComponent = $$Generic<SvelteComponent>
+    type TComponent = $$Generic<Component>
 
     export let instance: TComponent | undefined = undefined
     export let config: Omit<ComponentRenderConfig<TComponent>, 'props'>

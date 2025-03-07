@@ -1,10 +1,10 @@
 <script lang="ts">
-    import type { SvelteComponent } from 'svelte'
+    import type { Component } from 'svelte'
     import ComponentRenderer from './ComponentRenderer.svelte'
     import type { RenderConfig } from './createRender.js'
     import { isReadable, Undefined } from './store.js'
 
-    type TComponent = $$Generic<SvelteComponent>
+    type TComponent = $$Generic<Component>
 
     let config: RenderConfig<TComponent>
     export { config as of }
