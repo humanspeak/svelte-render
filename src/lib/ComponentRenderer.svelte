@@ -1,29 +1,19 @@
 <script lang="ts">
-    import { onMount, type Component } from 'svelte'
     import { Subscribe } from '@humanspeak/svelte-subscribe'
+    import { type Component } from 'svelte'
     import type { ComponentRenderConfig } from './createRender.js'
     import PropsRenderer from './PropsRenderer.svelte'
     import { isReadable } from './store.js'
 
     type TComponent = $$Generic<Component>
 
-    export let config: ComponentRenderConfig<TComponent>
+    type Props = {
+        config: ComponentRenderConfig<TComponent>
+    }
 
-    let instance: TComponent | undefined
-    onMount(function attachEventHandlers() {
-        config.eventHandlers.forEach(([type, handler]) => {
-            const callbacks = instance!.$$.callbacks[type] ?? []
-            callbacks.push(handler)
-            instance!.$$.callbacks[type] = callbacks
-        })
-        return function detachEventHandlers() {
-            config.eventHandlers.forEach(([type, handler]) => {
-                const callbacks: unknown[] = instance!.$$.callbacks[type]
-                const idx = callbacks.findIndex((c) => c === handler)
-                callbacks.splice(idx, 1)
-            })
-        }
-    })
+    const { config }: Props = $props()
+
+    let instance: TComponent | undefined = $state(undefined)
 </script>
 
 {#if isReadable(config.props)}
