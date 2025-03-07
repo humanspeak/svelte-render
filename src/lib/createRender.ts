@@ -1,4 +1,4 @@
-import type { Component, ComponentEvents, ComponentProps } from 'svelte'
+import type { Component, ComponentProps } from 'svelte'
 import type { Readable } from 'svelte/store'
 
 /* trunk-ignore(eslint/@typescript-eslint/no-explicit-any) */
@@ -18,23 +18,18 @@ export class ComponentRenderConfig<TComponent extends Component = Component<any>
     /**
      * @deprecated This method will be removed in the next major release. Please use svelte5 event syntax instead.
      */
-    eventHandlers: [
-        keyof ComponentEvents<TComponent>,
-        (ev: ComponentEvents<TComponent>[keyof ComponentEvents<TComponent>]) => void
-    ][] = []
+    /* trunk-ignore(eslint/@typescript-eslint/no-explicit-any) */
+    eventHandlers: [string, (ev: any) => void][] = []
 
     /**
      * @deprecated This method will be removed in the next major release. Please use svelte5 event syntax instead.
      */
-    on<TEventType extends keyof ComponentEvents<TComponent>>(
+    /* trunk-ignore(eslint/@typescript-eslint/no-explicit-any) */
+    on<TEventType extends string, TEvent = any>(
         type: TEventType,
-        handler: (ev: ComponentEvents<TComponent>[TEventType]) => void
+        handler: (ev: TEvent) => void
     ): this {
-        this.eventHandlers.push([
-            type,
-            /* trunk-ignore(eslint/no-unused-vars) */
-            handler as (ev: ComponentEvents<TComponent>[keyof ComponentEvents<TComponent>]) => void
-        ])
+        this.eventHandlers.push([type, handler])
         this.props ??= {} as ComponentProps<TComponent>
         ;(this.props as Record<string, unknown>)[`on${String(type)}`] = handler
         return this
