@@ -18,8 +18,10 @@
 
 {#if isReadable(config.props)}
     <Subscribe props={config.props} let:props>
-        <PropsRenderer bind:instance {config} props={props as ComponentProps<TComponent>} />
+        <!-- @ts-expect-error - Subscribe returns unknown -->
+        <PropsRenderer bind:instance {config} {props} />
     </Subscribe>
 {:else}
-    <PropsRenderer bind:instance {config} props={config.props as ComponentProps<TComponent>} />
+    <!-- @ts-expect-error - Subscribe returns unknown -->
+    <PropsRenderer bind:instance {config} props={config.props} />
 {/if}
