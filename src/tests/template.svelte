@@ -3,6 +3,7 @@
     import type { Component } from 'svelte'
 
     // trunk-ignore(eslint/@typescript-eslint/no-explicit-any)
+    // trunk-ignore(eslint/no-undef)
     type TComponent = $$Generic<Component<any>>
 
     export let config: RenderConfig<TComponent>

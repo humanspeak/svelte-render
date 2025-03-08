@@ -24,7 +24,15 @@ export class ComponentRenderConfig<TComponent extends Component = Component<any>
      * @param props - Optional props to pass to the component
      */
     constructor(
+        /**
+         * The Svelte component to render
+         */
+        // trunk-ignore(eslint/no-unused-vars)
         public component: TComponent,
+        /**
+         * Optional props to pass to the component
+         */
+        // trunk-ignore(eslint/no-unused-vars)
         public props?: Record<string, unknown>
     ) {}
 
@@ -33,6 +41,7 @@ export class ComponentRenderConfig<TComponent extends Component = Component<any>
      * List of event handlers to attach to the component
      */
     /* trunk-ignore(eslint/@typescript-eslint/no-explicit-any) */
+    // trunk-ignore(eslint/no-unused-vars)
     eventHandlers: [string, (ev: any) => void][] = []
 
     /**
@@ -46,6 +55,7 @@ export class ComponentRenderConfig<TComponent extends Component = Component<any>
     /* trunk-ignore(eslint/@typescript-eslint/no-explicit-any) */
     on<TEventType extends string, TEvent = any>(
         type: TEventType,
+        // trunk-ignore(eslint/no-unused-vars)
         handler: (ev: TEvent) => void
     ): this {
         this.eventHandlers.push([type, handler])
@@ -87,6 +97,7 @@ export class ComponentRenderConfig<TComponent extends Component = Component<any>
  */
 /* trunk-ignore(eslint/@typescript-eslint/no-explicit-any) */
 export function createRender<TComponent extends Component<any>>(
+    // trunk-ignore(eslint/no-unused-vars)
     component: TComponent
 ): ComponentRenderConfig<TComponent>
 
@@ -108,7 +119,10 @@ export function createRender<TComponent extends Component<any>>(
  */
 /* trunk-ignore(eslint/@typescript-eslint/no-explicit-any) */
 export function createRender<TComponent extends Component<any>>(
+    // trunk-ignore(eslint/no-unused-vars)
     component: TComponent,
+
+    // trunk-ignore(eslint/no-unused-vars)
     props: Partial<ComponentProps<TComponent>> | Readable<ComponentProps<TComponent>>
 ): ComponentRenderConfig<TComponent>
 

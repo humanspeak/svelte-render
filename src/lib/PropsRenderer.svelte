@@ -4,6 +4,7 @@
     import Render from './Render.svelte'
 
     // trunk-ignore(eslint/@typescript-eslint/no-explicit-any)
+    // trunk-ignore(eslint/no-undef)
     type TComponent = $$Generic<Component<any>>
     type Props = {
         instance: TComponent | undefined
@@ -16,7 +17,7 @@
 </script>
 
 <config.component {...props} bind:this={instance}>
-    {#each config.children as child}
+    {#each config.children as child, i (i)}
         <Render of={child} />
     {/each}
 </config.component>

@@ -5,6 +5,7 @@
     import { isReadable, Undefined } from './store.js'
 
     // trunk-ignore(eslint/@typescript-eslint/no-explicit-any)
+    // trunk-ignore(eslint/no-undef)
     type TComponent = $$Generic<Component<any>>
     type Props = {
         of: RenderConfig<TComponent>

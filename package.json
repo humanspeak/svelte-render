@@ -95,5 +95,10 @@
     },
     "peerDependencies": {
         "svelte": "^5.0.0"
+    },
+    "overrides": {
+        "@sveltejs/kit": {
+            "cookie": "^0.7.0"
+        }
     }
 }
