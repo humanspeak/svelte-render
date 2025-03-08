@@ -25,7 +25,9 @@ Manage complex Svelte behaviors outside of templates with full type safety.
 ## Installation
 
 ```bash
-$ npm i -D svelte-render
+
+npm i -D svelte-render
+
 ```
 
 ## API

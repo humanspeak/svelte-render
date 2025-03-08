@@ -1,35 +1,28 @@
 <script lang="ts">
-    import { onMount, type SvelteComponent } from 'svelte'
     import { Subscribe } from '@humanspeak/svelte-subscribe'
+    import { type Component } from 'svelte'
     import type { ComponentRenderConfig } from './createRender.js'
     import PropsRenderer from './PropsRenderer.svelte'
     import { isReadable } from './store.js'
 
-    type TComponent = $$Generic<SvelteComponent>
+    // trunk-ignore(eslint/@typescript-eslint/no-explicit-any)
+    // trunk-ignore(eslint/no-undef)
+    type TComponent = $$Generic<Component<any>>
+    type Props = {
+        config: ComponentRenderConfig<TComponent>
+    }
 
-    export let config: ComponentRenderConfig<TComponent>
+    const { config }: Props = $props()
 
-    let instance: TComponent | undefined
-    onMount(function attachEventHandlers() {
-        config.eventHandlers.forEach(([type, handler]) => {
-            const callbacks = instance!.$$.callbacks[type] ?? []
-            callbacks.push(handler)
-            instance!.$$.callbacks[type] = callbacks
-        })
-        return function detachEventHandlers() {
-            config.eventHandlers.forEach(([type, handler]) => {
-                const callbacks: unknown[] = instance!.$$.callbacks[type]
-                const idx = callbacks.findIndex((c) => c === handler)
-                callbacks.splice(idx, 1)
-            })
-        }
-    })
+    let instance: TComponent | undefined = $state(undefined)
 </script>
 
 {#if isReadable(config.props)}
     <Subscribe props={config.props} let:props>
+        <!-- @ts-expect-error - Subscribe returns unknown -->
         <PropsRenderer bind:instance {config} {props} />
     </Subscribe>
 {:else}
+    <!-- @ts-expect-error - Subscribe returns unknown -->
     <PropsRenderer bind:instance {config} props={config.props} />
 {/if}

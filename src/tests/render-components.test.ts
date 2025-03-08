@@ -1,8 +1,8 @@
 import { createRender } from '$lib/index.js'
 import { act, render, screen } from '@testing-library/svelte'
 import { writable } from 'svelte/store'
-import Rocket from './rocket.svelte'
 import MultipleRockets from './multiple-rockets.svelte'
+import Rocket from './rocket.svelte'
 import Template from './template.svelte'
 
 it('renders a component with no props', () => {

@@ -1,14 +1,18 @@
 <script lang="ts">
-    import type { SvelteComponent } from 'svelte'
+    import type { Component } from 'svelte'
     import ComponentRenderer from './ComponentRenderer.svelte'
     import type { RenderConfig } from './createRender.js'
     import { isReadable, Undefined } from './store.js'
 
-    type TComponent = $$Generic<SvelteComponent>
+    // trunk-ignore(eslint/@typescript-eslint/no-explicit-any)
+    // trunk-ignore(eslint/no-undef)
+    type TComponent = $$Generic<Component<any>>
+    type Props = {
+        of: RenderConfig<TComponent>
+    }
 
-    let config: RenderConfig<TComponent>
-    export { config as of }
-    const readableConfig = isReadable(config) ? config : Undefined
+    const { of: config }: Props = $props()
+    const readableConfig = $derived(isReadable(config) ? config : Undefined)
 </script>
 
 {#if isReadable(config)}

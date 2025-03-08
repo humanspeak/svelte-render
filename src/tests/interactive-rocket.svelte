@@ -1,10 +1,13 @@
 <script lang="ts">
-    import { createEventDispatcher } from 'svelte'
+    type Props = {
+        // trunk-ignore(eslint/no-unused-vars)
+        onclick: (ev: MouseEvent) => void
+        // trunk-ignore(eslint/no-unused-vars)
+        onlaunch: (ev: MouseEvent) => void
+    }
 
-    const dispatch = createEventDispatcher<{
-        launch: { message: string }
-    }>()
+    const { onclick, onlaunch }: Props = $props()
 </script>
 
-<button on:click>👽</button>
-<button on:click={() => dispatch('launch', { message: 'takeoff!' })}>🚀</button>
+<button {onclick}>👽</button>
+<button onclick={onlaunch}>🚀</button>
