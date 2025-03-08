@@ -1,11 +1,16 @@
 # svelte-render
 
-[![npm version](http://img.shields.io/npm/v/@humanspeak/svelte-render.svg)](https://www.npmjs.com/package/svelte-render)
-[![npm downloads](https://img.shields.io/npm/dm/@humanspeak/svelte-render.svg)](https://www.npmjs.com/package/svelte-render)
-![license](https://img.shields.io/npm/l/svelte-render)
-![build](https://img.shields.io/github/actions/workflow/status/humanspeak/svelte-render/publish.yml)
-[![coverage](https://coveralls.io/repos/github/humanspeak/svelte-render/badge.svg?branch=main)](https://coveralls.io/github/humanspeak/svelte-render?branch=main)
-[![size](https://img.shields.io/bundlephobia/min/@humanspeak/svelte-render)](https://bundlephobia.com/result?p=@humanspeak/svelte-render)
+[![NPM version](https://img.shields.io/npm/v/@humanspeak/svelte-render.svg)](https://www.npmjs.com/package/@humanspeak/svelte-render)
+[![Build Status](https://github.com/humanspeak/svelte-render/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/humanspeak/svelte-render/actions/workflows/npm-publish.yml)
+[![Coverage Status](https://coveralls.io/repos/github/humanspeak/svelte-render/badge.svg?branch=main)](https://coveralls.io/github/humanspeak/svelte-render?branch=main)
+[![License](https://img.shields.io/npm/l/@humanspeak/svelte-render.svg)](https://github.com/humanspeak/svelte-render/blob/main/LICENSE)
+[![Downloads](https://img.shields.io/npm/dm/@humanspeak/svelte-render.svg)](https://www.npmjs.com/package/@humanspeak/svelte-render)
+[![CodeQL](https://github.com/humanspeak/svelte-render/actions/workflows/codeql.yml/badge.svg)](https://github.com/humanspeak/svelte-render/actions/workflows/codeql.yml)
+[![Install size](https://packagephobia.com/badge?p=@humanspeak/svelte-render)](https://packagephobia.com/result?p=@humanspeak/svelte-render)
+[![Code Style: Trunk](https://img.shields.io/badge/code%20style-trunk-blue.svg)](https://trunk.io)
+[![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](http://www.typescriptlang.org/)
+[![Types](https://img.shields.io/npm/types/@humanspeak/svelte-render.svg)](https://www.npmjs.com/package/@humanspeak/svelte-render)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/humanspeak/svelte-render/graphs/commit-activity)
 
 Manage complex Svelte behaviors outside of templates with full type safety.
 
@@ -26,7 +31,7 @@ Manage complex Svelte behaviors outside of templates with full type safety.
 
 ```bash
 
-npm i -D svelte-render
+npm i -D @humanspeak/svelte-render
 
 ```
 
@@ -79,6 +84,8 @@ const avatar = createRender(Avatar, avatarProps)
 
 ### `.on(event, handler)`
 
+**deprecated** Note: this will be removed in a future version. It still works by concating the event to an on for instance `onclick` will be passed to the renderer.
+
 Svelte Render supports the Svelte event system by chaining `.on` calls on `createRender()`. Multiple event handlers can be registered for the same event type like the Svelte `on:` directive.
 
 ```ts
@@ -90,7 +97,7 @@ const button = createRender(Button)
 `<Render of={button} />` becomes:
 
 ```svelte
-<Button on:click={handleClick} on:click={(ev) => console.log(ev)} />
+<Button onclick={handleClick} onclick={(ev) => console.log(ev)} />
 ```
 
 However, note that the callback handler passed into `.on(event, handler)` is not dynamic and will only capture references to variables as they were when the render configuration is created.
@@ -108,7 +115,7 @@ Svelte Render also supports Svelte's default slot system.
 
 `.slot` receives any number of arguments with the same type as `of`, including `ComponentRenderConfig` returned by `createRender`, primitive data, and `Writable`. This makes it useful for rendering wrapper components such as `<Button />` and `<Label />`.
 
-_Due to technical limitations with Svelte 4, it is not possible to assign render configurations to named slots._
+_Due to technical limitations with Svelte 5, it is not possible to assign render configurations to named slots._
 
 ```ts
 const button = createRender(Button).slot(createRender(Icon, { name: 'user' }), 'Log in')
