@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Component, ComponentProps } from 'svelte'
+    import type { Component } from 'svelte'
     import type { ComponentRenderConfig } from './createRender.js'
     import Render from './Render.svelte'
 
@@ -7,9 +7,9 @@
     // trunk-ignore(eslint/no-undef)
     type TComponent = $$Generic<Component<any>>
     type Props = {
-        instance: TComponent | undefined
+        instance: ReturnType<Component> | undefined
         config: Omit<ComponentRenderConfig<TComponent>, 'props'>
-        props: ComponentProps<TComponent> | undefined
+        props: Record<string, unknown> | undefined
     }
 
     // trunk-ignore(eslint/prefer-const)

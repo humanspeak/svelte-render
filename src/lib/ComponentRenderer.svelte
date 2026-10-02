@@ -14,15 +14,13 @@
 
     const { config }: Props = $props()
 
-    let instance: TComponent | undefined = $state(undefined)
+    let instance: ReturnType<Component> | undefined = $state(undefined)
 </script>
 
-{#if isReadable(config.props)}
+{#if isReadable<Record<string, unknown>>(config.props)}
     <Subscribe props={config.props} let:props>
-        <!-- @ts-expect-error - Subscribe returns unknown -->
         <PropsRenderer bind:instance {config} {props} />
     </Subscribe>
 {:else}
-    <!-- @ts-expect-error - Subscribe returns unknown -->
     <PropsRenderer bind:instance {config} props={config.props} />
 {/if}
